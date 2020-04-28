@@ -1,0 +1,22 @@
+static const auto _____ = []()
+{
+    // fast IO code : this I understand
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    return 0;
+}();
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int size=nums.size();
+    int step=nums[0];
+    for(int i=1;i<size;++i){
+        step--;
+        if(step<0)
+           return false;
+        if(nums[i]>step)
+           step=nums[i];
+    }
+    return true;
+    }
+};
