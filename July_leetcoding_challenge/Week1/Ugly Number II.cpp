@@ -34,4 +34,4 @@ public:
     return next_ugly_no; 
         
     }
-};
+};y
