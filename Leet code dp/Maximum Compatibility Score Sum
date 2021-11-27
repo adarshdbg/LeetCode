@@ -1,0 +1,40 @@
+static const auto _____ = []()
+{
+    // fast IO code : this I understand
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    return 0;
+}();
+class Solution {
+public:
+    void solve(vector<vector<int>>& students, vector<vector<int>>& mentors,int &ans,int &n,int i,vector<bool>&vis,int sum)
+    {
+        if(i==n)
+        {
+          ans=max(ans,sum);
+            //cout<<sum<<" ";
+            return;
+        }
+        for(int j=0;j<n;j++)
+        {
+            if(vis[j])
+                continue;
+            vis[j]=true;
+            int count=0;
+            for(int k=0;k<students[0].size();k++)
+                if(students[i][k]==mentors[j][k])
+                    count++;
+            solve(students,mentors,ans,n,i+1,vis,sum+count);
+            vis[j]=false;
+        }
+    }
+    int maxCompatibilitySum(vector<vector<int>>& students, vector<vector<int>>& mentors) {
+        int n=students.size();
+        vector<bool>vis(n);
+        int ans=0,i=0,sum=0;
+        solve(students,mentors,ans,n,i,vis,sum);
+        
+        return ans;
+            
+    }
+};
