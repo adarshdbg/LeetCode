@@ -18,29 +18,26 @@ static const auto _____ = []()
  */
 class Solution {
 public:
-    void sumroot(int &sum, TreeNode* root,string &s)
+    int ans=0;
+    void sumroot(int sum, TreeNode* root)
     {
         if(!root)
             return ;
         if(!root->left && !root->right)
         {
-            s+=('0'+root->val);
-            std::bitset<1001> b1(s); 
-            sum+= b1.to_ulong();
-            s.pop_back();
+            sum= (sum<<1)|root->val;
+            ans+=sum;
             return ;
         }
-        s+=('0'+root->val);
-        sumroot(sum,root->left,s);
+        sum=(sum<<1)|root->val;
+        sumroot(sum,root->left);
         
-        sumroot(sum,root->right,s);
-        s.pop_back();
+        sumroot(sum,root->right);
         
     }
     int sumRootToLeaf(TreeNode* root) {
         int sum=0;
-        string s="";
-        sumroot(sum,root,s);
-        return sum;
+        sumroot(sum,root);
+        return ans;
     }
 };
