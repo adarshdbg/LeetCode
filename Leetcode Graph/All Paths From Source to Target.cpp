@@ -8,7 +8,7 @@ static const auto _____ = []()
 class Solution {
 public:
     
-    void dfs(vector<vector<int>>&ans,unordered_map<int,vector<int>>&m,vector<int>v,int i,int &n)
+    void dfs(vector<vector<int>>&ans,unordered_map<int,vector<int>>&m,vector<int>&v,int i,int &n)
     {
         v.push_back(i);
         if(i==n-1)
@@ -20,7 +20,10 @@ public:
         for(auto &j:m[i])
         {
             dfs(ans,m,v,j,n);
+            v.pop_back();
         }
+        
+        
         return;
     }
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
